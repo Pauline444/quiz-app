@@ -42,6 +42,7 @@ h2 {
 p {
     text-align: center;
     font-size: 1.5rem;
+    margin-bottom: 25px;
 }
 
 .container {
@@ -78,8 +79,6 @@ label {
 .play {
     color: var(--text-light);
     font-size: 2.3rem;
-    width: 400px;
-    height: 80px;
     text-decoration: none;
     padding: 10px 157px;
     box-shadow: 5px 5px 20px var(--btn);
@@ -89,18 +88,19 @@ label {
     font-family: 'Courier New', Courier, monospace;
 }
 
-.btn.play:hover {
+.play:hover {
     background-color: var(--btnhover);
     box-shadow: 2px 2px 30px var(--btn);
 }
 
-.btn.next {
+.next {
     color: var(--text-light);
     font-size: 1.7rem;
     width: 400px;
     height: 40px;
     border: none;
     margin-top: 50px;
+    margin-bottom: 20px;
     box-shadow: 5px 5px 20px var(--btn);
     cursor: pointer;
     border-radius: 10px;
@@ -108,7 +108,26 @@ label {
     font-family: 'Courier New', Courier, monospace;
 }
 
-.btn.next:hover {
+.next:hover {
     background-color: var(--btnhover);
     box-shadow: 2px 2px 30px var(--btn);
+}
+
+@media (max-width: 550px) {
+    #name {
+        width: 350px;
+        height: 25px;
+    }
+
+    .play {
+        font-size: 2rem;
+        padding: 8px 137px;
+        border-radius: 10px;
+    }
+
+    .next {
+        font-size: 1.5rem;
+        width: 350px;
+        height: 35px;
+    }
 }
