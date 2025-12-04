@@ -12,12 +12,16 @@
 <body>
     <div class="container">
         <header id="home" class="flex-container">
-            <h1>QUIZ</h1>
+            <h1><a href="index.html">QUIZ</a></h1>
             <p>Testa dina kunskaper inom dagens mest spännande teknik. Ange ditt namn, klicka på Play och se hur många
                 rätt du får.</p>
         </header>
         <main>
-            <a class="btn" href="/quiz.html">Play</a>
+            <div class="user-input">
+                <label for="name">Ditt quiz namn</label><br>
+                <input type="text" id="name" name="name">
+            </div>
+            <a class="btn play" href="quiz.html">Play</a>
         </main>
     </div>
 </body>
