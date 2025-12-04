@@ -13,3 +13,13 @@ document.addEventListener('DOMContentLoaded', () => {
         localStorage.setItem('playerName', userName);
     })
 })
+
+const themeBtn = document.querySelector('.toggle-theme');
+const container = document.querySelector('.container');
+const logo = document.querySelector('.fa-battle-net');
+
+themeBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    container.classList.toggle('dark');
+    logo.classList.toggle('dark');
+})
