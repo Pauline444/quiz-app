@@ -21,7 +21,6 @@ body {
     display: flex;
     justify-content: center;
     width: 100vw;
-    height: 100vh;
 }
 
 header {
@@ -76,12 +75,13 @@ label {
 
 }
 
-.btn.play {
+.play {
     color: var(--text-light);
     font-size: 2.3rem;
     width: 400px;
     height: 80px;
-    border: none;
+    text-decoration: none;
+    padding: 10px 157px;
     box-shadow: 5px 5px 20px var(--btn);
     cursor: pointer;
     border-radius: 20px;
@@ -90,6 +90,25 @@ label {
 }
 
 .btn.play:hover {
+    background-color: var(--btnhover);
+    box-shadow: 2px 2px 30px var(--btn);
+}
+
+.btn.next {
+    color: var(--text-light);
+    font-size: 1.7rem;
+    width: 400px;
+    height: 40px;
+    border: none;
+    margin-top: 50px;
+    box-shadow: 5px 5px 20px var(--btn);
+    cursor: pointer;
+    border-radius: 10px;
+    background-color: var(--btn);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.btn.next:hover {
     background-color: var(--btnhover);
     box-shadow: 2px 2px 30px var(--btn);
 }
