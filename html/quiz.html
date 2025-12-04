@@ -4,6 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="/style.css">
     <script src="/script.js" defer></script>
     <title>QUIZ Questions</title>
@@ -13,18 +15,20 @@
     <div class="container">
         <header id="quiz" class="flex-container">
             <h1><a href="index.html">QUIZ</a></h1>
-            <i>icon</i>
+            <i class="fa-brands fa-battle-net"></i>
         </header>
         <main>
             <div class="quiz-container">
-                <p>Fråga fråga fråga?</p>
+                <h2>Fråga fråga fråga?</h2>
                 <input type="radio" id="q">
                 <label for="q">Detta är ett alternativ</label><br>
                 <input type="radio" id="q">
                 <label for="q">Detta är ett alternativ</label>
             </div>
-            <button class="btn next">nästa</button><br>
-            <a class="home" href="index.html">börja om</a>
+            <div class="btn-container">
+                <button class="btn next">nästa</button><br>
+                <a class="home" href="index.html">börja om</a>
+            </div>
         </main>
     </div>
 </body>
