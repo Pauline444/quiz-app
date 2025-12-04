@@ -1,14 +1,15 @@
 'use strict';
 
-let playBtn = document.querySelector('.play');
-let nameInput = document.querySelector('#name');
+document.addEventListener('DOMContentLoaded', () => {
+    let playBtn = document.querySelector('.play');
+    let nameInput = document.querySelector('#name');
 
-playBtn.addEventListener('click', (e) => {
-    username = nameInput.value.trim()
-    if (userName = '') userName = 'Spelaren';
-    userName = userName.toUpperCase();
+    playBtn.addEventListener('click', () => {
+        let userName = nameInput.value.trim()
 
-    console.log(userName);
+        if (userName === '') userName = 'Spelaren';
+        userName = userName.toUpperCase();
 
-    localStorage.setItem('playerName', userName);
+        localStorage.setItem('playerName', userName);
+    })
 })
