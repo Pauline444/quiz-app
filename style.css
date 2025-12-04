@@ -1,5 +1,55 @@
+:root {
+    --bg-purple: rgb(233, 208, 255);
+    --bg-orange: rgb(255, 161, 46);
+    --bg-light: #fff5ff;
+    --btn: rgb(116, 69, 255);
+    --btnhover: rgb(83, 30, 244);
+    --text-dark: #222;
+    --text-light: #fff;
+}
+
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(to bottom right, var(--bg-purple), var(--bg-orange));
+    color: var(--text-dark);
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+h1 {
+    text-align: center;
+    font-size: 3.2rem;
+    margin: 15px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 2rem;
+    margin: 25px;
+}
+
+p {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+.container {
+    background-color: var(--bg-light);
+    border-radius: 40px;
+    margin: 50px;
+    padding: 40px;
+    height: 100vh;
+    min-height: 700px;
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
