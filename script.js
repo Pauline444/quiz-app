@@ -1,17 +1,14 @@
 'use strict';
 
-// spara användarens namn
-// när användaren klickar på play så ska sparade namnet skrivas ut på quiz sidan
-// använd litteral strings för att skriva ut ny textContent
 
-// Användaren ska utöver att besvara frågor för quizet, även kunna byta utseende på sidan mellan dark mode (dvs mörk bakgrundsfärg med ljus text) och light mode (ljus bakgrundsfärg med mörk text).
-
-// skapa en array med flera objekt med frågor och svar
 // loopa igenom frågor och svar från array med objekt
-// spara användarens val och räkna ihop totalen
+// spara användarens val och räkna ihop totala poängen
+// skriv ut poängen till användaren
 // användaren ska kunna se exakt vilka frågor hen besvarat rätt och/eller felaktigt när resultatet visas.
 
 
+
+// TOGGLE DARK MODE
 const themeBtn = document.querySelector('.toggle-theme');
 const container = document.querySelector('.container');
 const logo = document.querySelector('.fa-battle-net');
@@ -24,6 +21,7 @@ themeBtn.addEventListener('click', () => {
 
 
 
+// ANVÄNDARENS NAMN FRÅN localStorage
 document.addEventListener('DOMContentLoaded', () => {
     let addName = document.querySelector('.add-header');
     let savedName = localStorage.getItem('playerName');
@@ -35,18 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-let quizContainer = document.querySelector('.quiz-container');
-let nextBtn = document.querySelector('.next');
-
-let question = document.getElementById('question');
-let answere = document.querySelector('.answere');
-
-let currentQuestion = {};
-let score = 0;
-let questionCounter = 0;
-let availableQuestions = [];
-
-
+// QUIZ QUESTIONS
 const questions = [
     {
         question: "Vad står AI för?",
@@ -54,7 +41,7 @@ const questions = [
         option2: "Automated Integration",
         option3: "Advanced Interface",
         option4: "Active Input",
-        correctAnswer: "Artificial Intelligence"
+        correctAnswer: 1
     },
     {
         question: "Vilket programmeringsspråk används ofta för maskininlärning?",
@@ -62,7 +49,7 @@ const questions = [
         option2: "PHP",
         option3: "Swift",
         option4: "Ruby",
-        correctAnswer: "Python"
+        correctAnswer: 1
     },
     {
         question: "Vad är ett neuralt nätverk inspirerat av?",
@@ -70,7 +57,7 @@ const questions = [
         option2: "Mänskliga hjärnan",
         option3: "Internetkablar",
         option4: "DNA",
-        correctAnswer: "Mänskliga hjärnan"
+        correctAnswer: 2
     },
     {
         question: "Vilket företag utvecklade ChatGPT?",
@@ -78,7 +65,7 @@ const questions = [
         option2: "Meta",
         option3: "OpenAI",
         option4: "Amazon",
-        correctAnswer: "OpenAI"
+        correctAnswer: 3
     },
     {
         question: "Vad är en GPU särskilt bra på?",
@@ -86,7 +73,7 @@ const questions = [
         option2: "3D-visualisering och parallella beräkningar",
         option3: "Databashantering",
         option4: "Webbdesign",
-        correctAnswer: "3D-visualisering och parallella beräkningar"
+        correctAnswer: 2
     },
     {
         question: "Vad betyder 'Machine Learning'?",
@@ -94,7 +81,7 @@ const questions = [
         option2: "Datorer som lär av data",
         option3: "Datorer som ritar bilder",
         option4: "Datorer som lagrar information",
-        correctAnswer: "Datorer som lär av data"
+        correctAnswer: 2
     },
     {
         question: "Vad är en algoritm?",
@@ -102,7 +89,7 @@ const questions = [
         option2: "En sekvens instruktioner för att lösa ett problem",
         option3: "En typ av virus",
         option4: "Ett AI-verktyg",
-        correctAnswer: "En sekvens instruktioner för att lösa ett problem"
+        correctAnswer: 2
     },
     {
         question: "Vilken av följande AI-modeller är mest känd för bildgenerering?",
@@ -110,7 +97,7 @@ const questions = [
         option2: "MySQL",
         option3: "React",
         option4: "TensorFlow DB",
-        correctAnswer: "DALL·E"
+        correctAnswer: 1
     },
     {
         question: "Vad lagrar ett neuralt nätverks 'vikter'?",
@@ -118,7 +105,7 @@ const questions = [
         option2: "Nodenheter",
         option3: "Modellens inlärda kunskap",
         option4: "Webbsidans typsnitt",
-        correctAnswer: "Modellens inlärda kunskap"
+        correctAnswer: 3
     },
     {
         question: "Vad är en API?",
@@ -126,9 +113,38 @@ const questions = [
         option2: "En webbserver",
         option3: "En processor",
         option4: "Ett filformat",
-        correctAnswer: "Ett sätt för program att kommunicera"
+        correctAnswer: 1
     }
 ]
 
+const quizContainer = document.querySelector('.quiz-container');
+const questionElement = document.getElementById('question');
+const nextBtn = document.querySelector('.next');
+const scoreDisplay = document.createElement('div');
 
+let answere = document.querySelector('.answere');
+
+let currentQuestionIndex = 0;
+let score = 0;
+const maxQ = questions.length;
+
+
+const startGame = () => {
+    currentQuestionIndex = 0;
+    score = 0;
+    getNewQuestion();
+}
+
+const getNewQuestion = () => {
+    let q = questions[currentQuestionIndex];
+    questionElement.innerText = q.question;
+}
+
+nextBtn.addEventListener('click', () => {
+    currentQuestionIndex++;
+    showQuestion();
+})
+
+
+startGame();
 

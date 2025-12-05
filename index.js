@@ -1,5 +1,7 @@
 'use strict';
 
+
+// SPARA ANVÄNDARENS NAMN i localStorage
 document.addEventListener('DOMContentLoaded', () => {
     let playBtn = document.querySelector('.play');
     let nameInput = document.querySelector('#name');
@@ -14,6 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 })
 
+
+// TOGGLE DARK MODE
 const themeBtn = document.querySelector('.toggle-theme');
 const container = document.querySelector('.container');
 const logo = document.querySelector('.fa-battle-net');
