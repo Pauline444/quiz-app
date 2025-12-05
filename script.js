@@ -138,11 +138,21 @@ const startGame = () => {
 const getNewQuestion = () => {
     let q = questions[currentQuestionIndex];
     questionElement.innerText = q.question;
+
+    const labels = document.querySelectorAll('.answere');
+    const inputs = document.querySelectorAll('.input');
+
+    labels[0].innerText = q.option1;
+    labels[1].innerText = q.option2;
+    labels[2].innerText = q.option3;
+    labels[3].innerText = q.option4;
+
+    inputs.forEach(input => input.checked = false);
 }
 
 nextBtn.addEventListener('click', () => {
     currentQuestionIndex++;
-    showQuestion();
+    getNewQuestion();
 })
 
 

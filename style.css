@@ -94,6 +94,11 @@ a {
     z-index: 1;
 }
 
+.quiz-container {
+    max-width: 350px;
+    height: 220px;
+}
+
 #name {
     padding: 10px;
     border-radius: 10px;
