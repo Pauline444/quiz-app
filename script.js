@@ -127,7 +127,21 @@ const startGame = () => {
 
 
 const showResult = () => {
-    quizContainer.innerHTML = `Du fick ${score} av ${questions.lengt} frågor`;
+    let resultHtml = `<div class="result" style="display:flex; flex-direction: column; justify-content: center; align-items:center; margin-bottom: 20px;">Total score: ${score} / ${questions.length} rätt</div>`;
+
+    // userAnsweres array med alla sparade svar från användaren
+    userAnsweres.forEach((item, i) => {
+
+        const q = questions[i];
+        const userChoice = parseInt(item.answere);
+        const isCorrect = userChoice === q.correctAnswer;
+
+        resultHtml += `
+            <div style="margin-bottom: 5px; border-radius:10px; font-size: 10px; padding: 5px; background-color: ${isCorrect ? '#9dbea2ff' : '#de9f9fff'};">
+            ${q.question} - ${isCorrect ? 'rätt' : 'fel'}
+            </div>`
+    })
+    quizContainer.innerHTML = resultHtml;
 }
 
 
@@ -146,6 +160,7 @@ const getNewQuestion = () => {
         labels[2].innerText = q.option3;
         labels[3].innerText = q.option4;
 
+        // avmarkerar varje radiobtn till nästa sida
         inputs.forEach(input => input.checked = false);
     }
 }
@@ -159,6 +174,8 @@ nextBtn.addEventListener('click', () => {
         alert('Välj ett alternativ!')
         return;
     }
+    // om frågorna tar slut visa resultatet
+    // annars lägg in varje fråga och svar i ny array
     if (!q) showResult();
     else {
         userAnsweres.push({
@@ -169,9 +186,8 @@ nextBtn.addEventListener('click', () => {
 
     if (parseInt(selected.value) === q.correctAnswer) {
         score++
-        console.log(score)
     }
-
+    // öka index med 1 hela tiden så att nästa fråga laddas från arrayen
     currentQuestionIndex++;
 
     if (currentQuestionIndex < questions.length) {
