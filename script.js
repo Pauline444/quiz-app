@@ -127,7 +127,8 @@ const startGame = () => {
 
 
 const showResult = () => {
-    let resultHtml = `<div class="result" style="display:flex; flex-direction: column; justify-content: center; align-items:center; z-index: 3; margin-bottom: 20px;">Total score: ${score} / ${questions.length} poäng</div>`;
+    let resultHtml = `<div class="result">Total score: ${score} / ${questions.length} poäng</div>`;
+    // Ränka ut procenten
 
     // userAnsweres array med alla sparade svar från användaren
     userAnsweres.forEach((item, i) => {
@@ -136,10 +137,7 @@ const showResult = () => {
         const userChoice = parseInt(item.answere);
         const isCorrect = userChoice === q.correctAnswer;
 
-        resultHtml += `
-            <div style="margin-bottom: 5px; border-radius:10px; font-size: 10px; color="white"; padding: 5px; background-color: ${isCorrect ? '#003f0aff' : '#5d0b0bff'};">
-            ${q.question} - ${isCorrect ? 'rätt' : 'fel'}
-            </div>`;
+        resultHtml += `<div>${q.question} - ${isCorrect ? 'rätt' : 'fel'}</div>`;
     })
     resultHtml += `<div class="btn-container result-play">
                 <a class="btn play" href="quiz.html">Play</a>
