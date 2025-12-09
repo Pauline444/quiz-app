@@ -20,8 +20,6 @@ themeBtn.addEventListener('click', () => {
 })
 
 
-
-
 // QUIZ QUESTIONS
 const questions = [
     {
@@ -129,6 +127,13 @@ const startGame = () => {
 const showResult = () => {
     let resultHtml = `<div class="result">Total score: ${score} / ${questions.length} poäng</div>`;
     // Ränka ut procenten
+    if (score >= 7) {
+        resultHtml += '<div class="vg">VG - Stort Grattis</div>';
+    } else if (score == 6 || score == 5 || score == 4) {
+        resultHtml += '<div class="g">G - Grattis</div>';
+    } else if (score <= 3) {
+        resultHtml += '<div class="ig">IG - Plugga mer</div>';
+    }
 
     // userAnsweres array med alla sparade svar från användaren
     userAnsweres.forEach((item, i) => {
@@ -137,12 +142,11 @@ const showResult = () => {
         const userChoice = parseInt(item.answere);
         const isCorrect = userChoice === q.correctAnswer;
 
-        resultHtml += `<div>${q.question} - ${isCorrect ? 'rätt' : 'fel'}</div>`;
+        resultHtml += `<div style="font-size: 10px; margin: 10px; align-self: start;">${q.question} - ${isCorrect ? 'rätt' : 'fel'}</div>`;
     })
     resultHtml += `<div class="btn-container result-play">
-                <a class="btn play" href="quiz.html">Play</a>
-            </div>
-            <i class="fa-solid fa-moon toggle-theme"></i>`;
+                <a class="btn play" href="index.html">Play</a>
+            </div>`
     quizContainer.innerHTML = resultHtml;
 }
 
@@ -196,7 +200,6 @@ nextBtn.addEventListener('click', () => {
         showResult();
     }
 })
-
 
 
 // Hämta användarens namn från localStorage + Starta spel när all html är hämtad
