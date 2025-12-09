@@ -192,6 +192,11 @@ label {
     margin-bottom: 20px;
 }
 
+.result-color {
+    font-size: 10px;
+    align-self: start;
+}
+
 .vg,
 .g,
 .ig {

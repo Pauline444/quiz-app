@@ -142,7 +142,7 @@ const showResult = () => {
         const userChoice = parseInt(item.answere);
         const isCorrect = userChoice === q.correctAnswer;
 
-        resultHtml += `<div style="font-size: 10px; margin: 10px; align-self: start;">${q.question} - ${isCorrect ? 'rätt' : 'fel'}</div>`;
+        resultHtml += `<div class="result-color">${q.question} - ${isCorrect ? 'rätt' : 'fel'}</div>`;
     })
     resultHtml += `<div class="btn-container result-play">
                 <a class="btn play" href="index.html">Play</a>
