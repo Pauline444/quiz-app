@@ -127,7 +127,7 @@ const startGame = () => {
 
 
 const showResult = () => {
-    let resultHtml = `<div class="result" style="display:flex; flex-direction: column; justify-content: center; align-items:center; margin-bottom: 20px;">Total score: ${score} / ${questions.length} rätt</div>`;
+    let resultHtml = `<div class="result" style="display:flex; flex-direction: column; justify-content: center; align-items:center; z-index: 3; margin-bottom: 20px;">Total score: ${score} / ${questions.length} poäng</div>`;
 
     // userAnsweres array med alla sparade svar från användaren
     userAnsweres.forEach((item, i) => {
@@ -137,31 +137,31 @@ const showResult = () => {
         const isCorrect = userChoice === q.correctAnswer;
 
         resultHtml += `
-            <div style="margin-bottom: 5px; border-radius:10px; font-size: 10px; padding: 5px; background-color: ${isCorrect ? '#9dbea2ff' : '#de9f9fff'};">
+            <div style="margin-bottom: 5px; border-radius:10px; font-size: 10px; color="white"; padding: 5px; background-color: ${isCorrect ? '#003f0aff' : '#5d0b0bff'};">
             ${q.question} - ${isCorrect ? 'rätt' : 'fel'}
-            </div>`
+            </div>`;
     })
+    resultHtml += `<div class="btn-container result-play">
+                <a class="btn play" href="quiz.html">Play</a>
+            </div>
+            <i class="fa-solid fa-moon toggle-theme"></i>`;
     quizContainer.innerHTML = resultHtml;
 }
 
 
 const getNewQuestion = () => {
     let q = questions[currentQuestionIndex];
-
+    // om det inte finns några frågor kvar, visa resultatet
     if (!q) showResult();
     else {
         questionElement.innerText = `${currentQuestionIndex + 1}/10 ${q.question}`;
 
-        const labels = document.querySelectorAll('.answere');
-        const inputs = document.querySelectorAll('.input');
-
-        labels[0].innerText = q.option1;
-        labels[1].innerText = q.option2;
-        labels[2].innerText = q.option3;
-        labels[3].innerText = q.option4;
-
+        // loopar igenom så att det blir rätt siffra och skriver ut varje fråga
+        document.querySelectorAll('.answere').forEach((label, i) => {
+            label.innerText = q['option' + [i + 1]];
+        })
         // avmarkerar varje radiobtn till nästa sida
-        inputs.forEach(input => input.checked = false);
+        document.querySelectorAll('.input').forEach(input => input.checked = false);
     }
 }
 
@@ -183,13 +183,15 @@ nextBtn.addEventListener('click', () => {
             answere: selected.value
         })
     }
-
+    // gör om värdet från användarens val till integer(tal) ist för string för att matcha rätta svarets tal
     if (parseInt(selected.value) === q.correctAnswer) {
         score++
     }
     // öka index med 1 hela tiden så att nästa fråga laddas från arrayen
     currentQuestionIndex++;
 
+    // om frågornas index är mindre än antalet frågor så ladda en ny fråga
+    // annars visa resultatet
     if (currentQuestionIndex < questions.length) {
         getNewQuestion();
     } else {

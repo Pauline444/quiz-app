@@ -34,6 +34,12 @@ body {
     transition: 0.3s ease;
 }
 
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 h1,
 h2 {
     text-align: center;
@@ -42,8 +48,9 @@ h2 {
 }
 
 h3 {
+    height: 130px;
     text-align: center;
-    font-size: 1.7rem;
+    font-size: 1.5rem;
     margin: 25px;
 }
 
@@ -76,7 +83,7 @@ a {
     margin: 50px;
     padding: 40px;
     height: 100vh;
-    min-height: 700px;
+    min-height: 740px;
     max-width: 600px;
     display: flex;
     flex-direction: column;
@@ -91,9 +98,23 @@ a {
     z-index: 1;
 }
 
+.input-container {
+    height: 100px;
+    align-self: flex-start;
+    margin-left: 30px;
+    cursor: pointer;
+}
+
+.result-play {
+    margin-top: 20px;
+}
+
 .quiz-container {
-    max-width: 350px;
-    height: 220px;
+    width: 450px;
+    height: 440px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #name {
@@ -105,8 +126,8 @@ a {
     border: 1px solid var(--text-dark);
 }
 
-.imput {
-    margin-bottom: 10px;
+input {
+    cursor: pointer;
 }
 
 .user-input {
@@ -142,7 +163,6 @@ label {
     width: 400px;
     height: 40px;
     border: none;
-    margin-top: 50px;
     margin-bottom: 20px;
     box-shadow: 5px 5px 20px var(--btn);
     cursor: pointer;
@@ -170,8 +190,16 @@ label {
         font-size: 2.8rem;
     }
 
-    #name {
+    .quiz-container {
         width: 350px;
+    }
+
+    .input-container {
+        margin-left: 15px;
+    }
+
+    #name {
+        width: 330px;
         height: 25px;
     }
 
