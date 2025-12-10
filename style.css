@@ -1,5 +1,5 @@
 :root {
-    --bg-purple: rgb(232, 206, 255);
+    --bg-purple: rgb(205, 149, 255);
     --bg-orange: rgb(255, 161, 46);
     --bg-light: #fff5ff;
     --btn: rgb(116, 69, 255);
@@ -48,7 +48,7 @@ h2 {
 }
 
 h3 {
-    height: 130px;
+    height: 100px;
     text-align: center;
     font-size: 1.5rem;
     margin: 25px;
@@ -77,13 +77,18 @@ a {
     font-size: 40px;
 }
 
+.fa-backward {
+    font-size: 15px;
+    margin-right: 10px;
+}
+
 .container {
     background-color: var(--bg-light);
     border-radius: 40px;
     margin: 50px;
     padding: 40px;
     height: 100vh;
-    min-height: 680px;
+    min-height: 700px;
     max-width: 600px;
     display: flex;
     flex-direction: column;
@@ -122,7 +127,7 @@ a {
     border-radius: 10px;
     width: 400px;
     height: 30px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     border: 1px solid var(--text-dark);
 }
 
@@ -138,17 +143,20 @@ label {
     font-family: 'Courier New', Courier, monospace;
 }
 
-.play {
+.btn {
     color: var(--text-light);
+    background-color: var(--btn);
+    font-family: 'Courier New', Courier, monospace;
+    box-shadow: 5px 5px 20px var(--btn);
+    cursor: pointer;
+}
+
+.play {
     font-size: 2.3rem;
     text-decoration: none;
     padding: 10px 157px;
     margin-bottom: 30px;
-    box-shadow: 5px 5px 20px var(--btn);
-    cursor: pointer;
     border-radius: 20px;
-    background-color: var(--btn);
-    font-family: 'Courier New', Courier, monospace;
     display: block;
 }
 
@@ -158,17 +166,12 @@ label {
 }
 
 .next {
-    color: var(--text-light);
     font-size: 1.7rem;
     width: 400px;
     height: 40px;
     border: none;
     margin-bottom: 20px;
-    box-shadow: 5px 5px 20px var(--btn);
-    cursor: pointer;
     border-radius: 10px;
-    background-color: var(--btn);
-    font-family: 'Courier New', Courier, monospace;
 }
 
 .next:hover {
@@ -195,6 +198,11 @@ label {
 .result-color {
     font-size: 10px;
     align-self: start;
+    margin-left: 20px;
+}
+
+.result-play {
+    margin-top: 40px;
 }
 
 .vg,
@@ -207,15 +215,15 @@ label {
 }
 
 .vg {
-    background-color: green;
+    background-color: rgb(0, 83, 0);
 }
 
 .g {
-    background-color: orange;
+    background-color: rgb(186, 121, 0);
 }
 
 .ig {
-    background-color: red;
+    background-color: rgb(187, 0, 0);
 }
 
 @media (max-width: 550px) {
@@ -235,6 +243,10 @@ label {
 
     .input-container {
         margin-left: 15px;
+    }
+
+    .result-color {
+        margin-left: 10px;
     }
 
     #name {

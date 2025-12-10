@@ -126,14 +126,17 @@ const startGame = () => {
 
 const showResult = () => {
     let resultHtml = `<div class="result">Total score: ${score} / ${questions.length} poäng</div>`;
+    let procenten = score / questions.length * 100;
+    console.log(procenten)
     // Ränka ut procenten
     if (score >= 7) {
-        resultHtml += '<div class="vg">VG - Stort Grattis</div>';
-    } else if (score == 6 || score == 5 || score == 4) {
-        resultHtml += '<div class="g">G - Grattis</div>';
-    } else if (score <= 3) {
-        resultHtml += '<div class="ig">IG - Plugga mer</div>';
+        resultHtml += `<div class="vg">${procenten}% - Bra Jobbat!!</div>`;
+    } else if (score == 6 || score == 5) {
+        resultHtml += `<div class="g">${procenten}% - Bra!</div>`;
+    } else if (score <= 4) {
+        resultHtml += `<div class="ig">${procenten}% - Underkänd..</div>`;
     }
+    resultHtml += '<div class="result-color">Dina svar:</div>';
 
     // userAnsweres array med alla sparade svar från användaren
     userAnsweres.forEach((item, i) => {
@@ -156,9 +159,10 @@ const getNewQuestion = () => {
     // om det inte finns några frågor kvar, visa resultatet
     if (!q) showResult();
     else {
-        questionElement.innerText = `${currentQuestionIndex + 1}/10 ${q.question}`;
+        // h3 elementet som visar vilken av frågorna du är på, hur många som är kvar, samt frågan
+        questionElement.innerText = `${currentQuestionIndex + 1}/${questions.length} ${q.question}`;
 
-        // loopar igenom så att det blir rätt siffra och skriver ut varje fråga
+        // loopar igenom så att det blir rätt index och skriver ut varje fråga
         document.querySelectorAll('.answere').forEach((label, i) => {
             label.innerText = q['option' + [i + 1]];
         })
