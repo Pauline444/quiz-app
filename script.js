@@ -126,7 +126,7 @@ const showResult = () => {
     let resultHtml = `<div class="result">Total score: ${score} / ${questions.length} poäng</div>`;
     //räkna ut hur många procent användaren fått
     let procenten = score / questions.length * 100;
-    console.log(procenten)
+
     // visa betyg baserat på poäng
     if (score >= 7) {
         resultHtml += `<div class="vg">${procenten}% - Bra Jobbat!!</div>`;
@@ -214,8 +214,7 @@ nextBtn.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => {
     let addName = document.querySelector('.add-header');
     let savedName = localStorage.getItem('playerName');
-
-    console.log(savedName);
+    // skriv ut sparade namnet i html dokumentet
     addName.innerHTML = `<h2>${savedName}'s<br> QUIZ</h2>`;
 
     startGame();
