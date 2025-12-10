@@ -1,13 +1,6 @@
 'use strict';
 
 
-// loopa igenom frågor och svar från array med objekt
-// spara användarens val och räkna ihop totala poängen
-// skriv ut poängen till användaren
-// användaren ska kunna se exakt vilka frågor hen besvarat rätt och/eller felaktigt när resultatet visas.
-
-
-
 // TOGGLE DARK MODE
 const themeBtn = document.querySelector('.toggle-theme');
 const container = document.querySelector('.container');
@@ -18,6 +11,8 @@ themeBtn.addEventListener('click', () => {
     container.classList.toggle('dark');
     logo.classList.toggle('dark');
 })
+
+
 
 
 // QUIZ QUESTIONS
@@ -104,6 +99,8 @@ const questions = [
     }
 ]
 
+
+
 const quizContainer = document.querySelector('.quiz-container');
 const questionElement = document.getElementById('question');
 const nextBtn = document.querySelector('.next');
@@ -124,11 +121,13 @@ const startGame = () => {
 }
 
 
+
 const showResult = () => {
     let resultHtml = `<div class="result">Total score: ${score} / ${questions.length} poäng</div>`;
+    //räkna ut hur många procent användaren fått
     let procenten = score / questions.length * 100;
     console.log(procenten)
-    // Ränka ut procenten
+    // visa betyg baserat på poäng
     if (score >= 7) {
         resultHtml += `<div class="vg">${procenten}% - Bra Jobbat!!</div>`;
     } else if (score == 6 || score == 5) {
@@ -136,22 +135,26 @@ const showResult = () => {
     } else if (score <= 4) {
         resultHtml += `<div class="ig">${procenten}% - Underkänd..</div>`;
     }
-    resultHtml += '<div class="result-color">Dina svar:</div>';
+    resultHtml += '<div class="result-color"><strong>Dina svar:</strong></div>';
 
-    // userAnsweres array med alla sparade svar från användaren
+    // loopa igenom userAnsweres array med alla sparade svar från användaren
+    // skriv ut alla frågor och visa användaren om hen svarat rätt eller fel
     userAnsweres.forEach((item, i) => {
 
-        const q = questions[i];
-        const userChoice = parseInt(item.answere);
-        const isCorrect = userChoice === q.correctAnswer;
+        const currentQuestion = questions[i]; // hämta frågan med samma index
+        const userChoice = parseInt(item.answere); // gör om svaret till nummer
+        const isCorrect = userChoice === currentQuestion.correctAnswer;
 
-        resultHtml += `<div class="result-color">${q.question} - ${isCorrect ? 'rätt' : 'fel'}</div>`;
+        resultHtml += `<div class="result-color">${currentQuestion.question} - ${isCorrect ? 'rätt' : 'fel'}</div>`;
     })
     resultHtml += `<div class="btn-container result-play">
                 <a class="btn play" href="index.html">Play</a>
             </div>`
+
+    // lägg in resultat html i quiz-container som innan hade visat frågorna
     quizContainer.innerHTML = resultHtml;
 }
+
 
 
 const getNewQuestion = () => {
@@ -172,31 +175,31 @@ const getNewQuestion = () => {
 }
 
 
+
 nextBtn.addEventListener('click', () => {
     let q = questions[currentQuestionIndex];
     const selected = document.querySelector('input[name="answere"]:checked');
-
+    // om ingen fråga är vald, popup alert!
     if (!selected) {
         alert('Välj ett alternativ!')
         return;
     }
     // om frågorna tar slut visa resultatet
-    // annars lägg in varje fråga och svar i ny array
+    // annars lägg in varje svar från användaren i ny array
     if (!q) showResult();
     else {
         userAnsweres.push({
-            question: q.question,
             answere: selected.value
         })
     }
-    // gör om värdet från användarens val till integer(tal) ist för string för att matcha rätta svarets tal
+    // gör om värdet från användarens val till integer(tal) ist för string för att matcha rätta svarets integer(tal)
     if (parseInt(selected.value) === q.correctAnswer) {
         score++
     }
-    // öka index med 1 hela tiden så att nästa fråga laddas från arrayen
+    // öka index med 1 hela tiden så att nästa fråga laddas från questions arrayen
     currentQuestionIndex++;
 
-    // om frågornas index är mindre än antalet frågor så ladda en ny fråga
+    // om frågornas index är mindre än antalet frågor (om det finns frågor kvar) ladda en ny fråga
     // annars visa resultatet
     if (currentQuestionIndex < questions.length) {
         getNewQuestion();
@@ -206,7 +209,8 @@ nextBtn.addEventListener('click', () => {
 })
 
 
-// Hämta användarens namn från localStorage + Starta spel när all html är hämtad
+
+// Hämta användarens namn från localStorage + Starta spel, när all html har laddat
 document.addEventListener('DOMContentLoaded', () => {
     let addName = document.querySelector('.add-header');
     let savedName = localStorage.getItem('playerName');
