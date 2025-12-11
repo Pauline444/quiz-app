@@ -67,6 +67,10 @@ a {
     color: var(--text-dark);
 }
 
+.quiz-header {
+    font-size: 4.5rem;
+}
+
 .fa-battle-net {
     font-size: 180px;
     color: var(--icon);
@@ -274,6 +278,10 @@ label {
     .quiz-container {
         width: 340px;
         height: 410px;
+    }
+
+    .flex-container {
+        height: 170px;
     }
 
     #home {
