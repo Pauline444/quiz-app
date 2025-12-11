@@ -60,6 +60,7 @@ p {
     font-size: 1.6rem;
     max-width: 440px;
     margin-top: 20px;
+    z-index: 2;
 }
 
 a {
