@@ -123,7 +123,9 @@ const startGame = () => {
 
 
 const showResult = () => {
-    let resultHtml = `<div class="result">Total score: ${score} / ${questions.length} poäng</div>`;
+    let resultHtml = '';
+    // lägg till en klass för att öka höjden på containern när resultatet visas
+    container.classList.add('result-mode');
     //räkna ut hur många procent användaren fått
     let procenten = score / questions.length * 100;
 
@@ -135,21 +137,28 @@ const showResult = () => {
     } else if (score <= 4) {
         resultHtml += `<div class="ig">${procenten}% - Underkänd..</div>`;
     }
-    resultHtml += '<div class="result-color"><strong>Dina svar:</strong></div>';
+    resultHtml += '<strong>Dina svar</strong>';
 
     // loopa igenom userAnsweres array med alla sparade svar från användaren
     // skriv ut alla frågor och visa användaren om hen svarat rätt eller fel
     userAnsweres.forEach((item, i) => {
 
         const currentQuestion = questions[i]; // hämta frågan med samma index
-        const userChoice = parseInt(item.answere); // gör om svaret till nummer
-        const isCorrect = userChoice === currentQuestion.correctAnswer;
+        const userChoice = parseInt(item.answere); // hämta användarens svar och gör om till integer(tal)
+        const isCorrect = userChoice === currentQuestion.correctAnswer; // jämför svaret med rätta svaret
 
-        resultHtml += `<div class="result-color">${currentQuestion.question} - ${isCorrect ? 'rätt' : 'fel'}</div>`;
+        // snygga till designen med zebra bakgrund för att öka läsbarheten
+        const toggleClass = i % 2 === 0 ? 'result-row even' : 'result-row odd';
+
+        resultHtml += `
+            <div class="${toggleClass}">
+                <div class="result">${currentQuestion.question} - ${isCorrect ? 'rätt' : 'fel'}</div>
+            </div>`;
     })
-    resultHtml += `<div class="btn-container result-play">
-                <a class="btn play" href="index.html">Play</a>
-            </div>`
+    resultHtml += `
+        <div class="btn-container result-play">
+            <a class="btn play" href="index.html">Play</a>
+        </div>`;
 
     // lägg in resultat html i quiz-container som innan hade visat frågorna
     quizContainer.innerHTML = resultHtml;
@@ -159,13 +168,15 @@ const showResult = () => {
 
 const getNewQuestion = () => {
     let q = questions[currentQuestionIndex];
+    // ta bort klassen för att minska höjden på containern
+    container.classList.remove('result-mode');
     // om det inte finns några frågor kvar, visa resultatet
     if (!q) showResult();
     else {
         // h3 elementet som visar vilken av frågorna du är på, hur många som är kvar, samt frågan
         questionElement.innerText = `${currentQuestionIndex + 1}/${questions.length} ${q.question}`;
 
-        // loopar igenom så att det blir rätt index och skriver ut varje fråga
+        // loopar igenom varje svar och skriver ut de fyra alternativen i html med name answere
         document.querySelectorAll('.answere').forEach((label, i) => {
             label.innerText = q['option' + [i + 1]];
         })
@@ -178,6 +189,7 @@ const getNewQuestion = () => {
 
 nextBtn.addEventListener('click', () => {
     let q = questions[currentQuestionIndex];
+
     const selected = document.querySelector('input[name="answere"]:checked');
     // om ingen fråga är vald, popup alert!
     if (!selected) {
@@ -185,7 +197,7 @@ nextBtn.addEventListener('click', () => {
         return;
     }
     // om frågorna tar slut visa resultatet
-    // annars lägg in varje svar från användaren i ny array
+    // annars lägg in varje svar från användaren i ny array 
     if (!q) showResult();
     else {
         userAnsweres.push({

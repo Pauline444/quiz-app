@@ -45,13 +45,14 @@ h2 {
     text-align: center;
     font-size: 3.2rem;
     margin: 15px;
+    z-index: 2;
 }
 
 h3 {
-    height: 100px;
-    text-align: center;
+    height: 70px;
+    text-align: left;
     font-size: 1.5rem;
-    margin: 25px;
+    margin: 30px;
 }
 
 p {
@@ -68,7 +69,7 @@ a {
 .fa-battle-net {
     font-size: 180px;
     color: var(--icon);
-    z-index: -1;
+    z-index: 1;
     position: absolute;
     top: 10px;
 }
@@ -94,18 +95,23 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    position: relative;
+}
+
+.container.result-mode {
+    min-height: 800px;
+    position: relative;
 }
 
 .flex-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    position: relative;
-    z-index: 1;
+    height: 200px;
 }
 
 .input-container {
-    height: 100px;
+    height: 120px;
     align-self: flex-start;
     margin-left: 30px;
     cursor: pointer;
@@ -117,7 +123,7 @@ a {
 
 .quiz-container {
     width: 450px;
-    height: 400px;
+    height: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -129,7 +135,7 @@ a {
     width: 400px;
     height: 30px;
     margin-bottom: 20px;
-    border: 1px solid var(--text-dark);
+    border: none;
 }
 
 input {
@@ -142,6 +148,7 @@ input {
 
 label {
     font-family: 'Courier New', Courier, monospace;
+    font-size: 18px;
 }
 
 .btn {
@@ -185,21 +192,35 @@ label {
     display: block;
     margin: 10px auto;
     cursor: pointer;
+    position: absolute;
+    bottom: 30px;
+}
+
+.toggle-theme:hover {
+    transform: scale(1.2);
 }
 
 .result {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    z-index: 3;
-    margin-bottom: 20px;
+    font-size: 12px;
+    margin-left: 20px;
 }
 
-.result-color {
-    font-size: 10px;
+.result-row {
     align-self: start;
-    margin-left: 20px;
+    padding: 5px;
+    border-left: 2px solid var(--btn);
+}
+
+.result-row.odd {
+    background-color: #ffffff;
+}
+
+.dark .result-row.even {
+    background-color: #333;
+}
+
+.dark .result-row.odd {
+    background-color: #2a2a2a;
 }
 
 .result-play {
@@ -211,7 +232,7 @@ label {
 .ig {
     font-size: 25px;
     color: white;
-    padding: 15px 30px;
+    padding: 10px 20px;
     margin-bottom: 20px;
 }
 
@@ -232,6 +253,11 @@ label {
     h1,
     h2 {
         font-size: 2.8rem;
+        margin: 20px;
+    }
+
+    h3 {
+        height: 110px;
     }
 
     p {
@@ -239,37 +265,43 @@ label {
     }
 
     .container {
-        max-width: 400px;
+        max-width: 350px;
         padding: 20px;
-        min-height: 500px;
+        height: 730px;
     }
 
     .quiz-container {
         width: 340px;
+        height: 410px;
+    }
+
+    #home {
+        height: 160px;
+        margin-bottom: 130px;
     }
 
     .input-container {
-        margin-left: 15px;
+        margin-left: 25px;
     }
 
     .result-color {
-        margin-left: 10px;
+        margin: 0 25px;
     }
 
     #name {
-        width: 330px;
+        width: 290px;
         height: 25px;
     }
 
     .play {
         font-size: 2rem;
-        padding: 8px 130px;
+        padding: 8px 110px;
         border-radius: 10px;
     }
 
     .next {
         font-size: 1.5rem;
-        width: 330px;
+        width: 290px;
         height: 35px;
     }
 }
