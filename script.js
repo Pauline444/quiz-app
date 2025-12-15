@@ -121,6 +121,62 @@ const startGame = () => {
 
 
 
+// LADDA HTML sen STARTA SPELET
+document.addEventListener('DOMContentLoaded', () => {
+    let addName = document.querySelector('.add-header');
+    let savedName = localStorage.getItem('playerName');
+
+    addName.innerHTML = `<h2>${savedName}'s<br> QUIZ</h2>`;
+
+    startGame();
+})
+
+
+
+
+const getNewQuestion = () => {
+    let q = questions[currentQuestionIndex];
+    container.classList.remove('result-mode');
+
+    if (!q) showResult();
+    else {
+        questionElement.innerText = `${currentQuestionIndex + 1}/${questions.length} ${q.question}`;
+
+        document.querySelectorAll('.answere').forEach((label, i) => {
+            label.innerText = q['option' + [i + 1]];
+        })
+        document.querySelectorAll('.input').forEach(input => input.checked = false);
+    }
+}
+
+
+
+nextBtn.addEventListener('click', () => {
+    let q = questions[currentQuestionIndex];
+    const selected = document.querySelector('input[name="answere"]:checked');
+
+    if (!selected) {
+        alert('Välj ett alternativ!')
+        return;
+    }
+    if (!q) showResult();
+    else {
+        userAnsweres.push({
+            answere: selected.value
+        })
+    }
+    if (parseInt(selected.value) === q.correctAnswer) {
+        score++
+    }
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        getNewQuestion();
+    } else {
+        showResult();
+    }
+})
+
+
 const showResult = () => {
     let resultHtml = '';
     container.classList.add('result-mode');
@@ -158,60 +214,6 @@ const showResult = () => {
 
 
 
-const getNewQuestion = () => {
-    let q = questions[currentQuestionIndex];
-    container.classList.remove('result-mode');
-
-    if (!q) showResult();
-    else {
-        questionElement.innerText = `${currentQuestionIndex + 1}/${questions.length} ${q.question}`;
-
-        document.querySelectorAll('.answere').forEach((label, i) => {
-            label.innerText = q['option' + [i + 1]];
-        })
-        document.querySelectorAll('.input').forEach(input => input.checked = false);
-    }
-}
 
 
-
-nextBtn.addEventListener('click', () => {
-    let q = questions[currentQuestionIndex];
-    const selected = document.querySelector('input[name="answere"]:checked');
-
-    if (!selected) {
-        alert('Välj ett alternativ!')
-        return;
-    }
-
-    if (!q) showResult();
-    else {
-        userAnsweres.push({
-            answere: selected.value
-        })
-    }
-
-    if (parseInt(selected.value) === q.correctAnswer) {
-        score++
-    }
-
-    currentQuestionIndex++;
-
-    if (currentQuestionIndex < questions.length) {
-        getNewQuestion();
-    } else {
-        showResult();
-    }
-})
-
-
-// LADDA HTML sen STARTA SPELET
-document.addEventListener('DOMContentLoaded', () => {
-    let addName = document.querySelector('.add-header');
-    let savedName = localStorage.getItem('playerName');
-
-    addName.innerHTML = `<h2>${savedName}'s<br> QUIZ</h2>`;
-
-    startGame();
-})
 
